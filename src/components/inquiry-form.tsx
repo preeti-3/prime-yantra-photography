@@ -79,9 +79,9 @@ export function InquiryForm() {
   }
 
   const fieldClass =
-    "block h-[52px] min-h-[52px] w-full rounded-none border-0 border-b border-white/30 bg-transparent px-0 pt-[18px] pb-3 text-sm leading-[21px] text-white placeholder:text-white/60 focus:border-gold focus:outline-none aria-[invalid=true]:border-[#f4b4a7] max-md:text-base";
+    "block h-[52px] min-h-[52px] w-full rounded-none border-0 border-b border-white/30 bg-transparent px-0 pt-[18px] pb-3 text-sm leading-[21px] text-white placeholder:text-white/60 focus:border-orange focus:outline-none aria-[invalid=true]:border-[#f4b4a7] max-md:text-base";
   const labelClass =
-    "absolute top-0 left-0 z-[1] cursor-text text-[11px] leading-[15px] uppercase text-[var(--muted)]";
+    "absolute top-0 left-0 z-[1] cursor-text text-[11px] leading-[15px] text-[var(--muted)]";
 
   return (
     <form

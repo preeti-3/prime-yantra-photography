@@ -14,6 +14,7 @@ const links = [
 
 export function Navbar() {
   const pathname = usePathname();
+  const isHome = pathname === "/";
   const [open, setOpen] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
   const header = useRef<HTMLElement>(null);
@@ -42,7 +43,7 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header ref={header} className="site-header">
+    <header ref={header} className={`site-header ${isHome ? "site-header-home" : ""}`}>
       <div className="navbar page-width">
         <Link
           href="/"
@@ -51,7 +52,8 @@ export function Navbar() {
           onClick={() => setOpen(false)}
         >
           <Image
-            slot="shared.logo" src={assets.shared.logo}
+            slot={isHome ? "shared.footerLogo" : "shared.logo"}
+            src={isHome ? assets.shared.footerLogo : assets.shared.logo}
             alt="Prime Yantra Photography"
             width={150}
             height={58}
@@ -71,7 +73,7 @@ export function Navbar() {
           ))}
         </nav>
         <Link className="button button-dark nav-inquiry" href="/contact">
-          Book your shoot
+          Check availability
         </Link>
         <button
           ref={toggle}
@@ -110,7 +112,7 @@ export function Navbar() {
             href="/contact"
             onClick={() => setOpen(false)}
           >
-            Book your shoot
+            Check availability
           </Link>
         </nav>
       </div>

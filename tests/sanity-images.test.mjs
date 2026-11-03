@@ -10,12 +10,12 @@ const nativeRequire = createRequire(import.meta.url);
 const modules = new Map();
 function load(path) {
   if (modules.has(path)) return modules.get(path).exports;
-  const module = { exports: {} };
-  modules.set(path, module);
+  const loadedModule = { exports: {} };
+  modules.set(path, loadedModule);
   const javascript = ts.transpileModule(readFileSync(path, "utf8"), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
   const require = (specifier) => specifier.startsWith(".") ? load(resolve(dirname(path), `${specifier}.ts`)) : nativeRequire(specifier);
-  new Function("require", "module", "exports", javascript)(require, module, module.exports);
-  return module.exports;
+  new Function("require", "module", "exports", javascript)(require, loadedModule, loadedModule.exports);
+  return loadedModule.exports;
 }
 const cms = load(resolve("src/lib/sanity-images.ts"));
 process.env.SANITY_PROJECT_ID = "testproject";

@@ -18,6 +18,7 @@ export function AdminPanel({ authenticated, adminReady, cmsReady }: { authentica
   const [restoreConfirm, setRestoreConfirm] = useState(false);
   const fileInput = useRef<HTMLInputElement>(null);
   const editor = useRef<HTMLDialogElement>(null);
+  const previewUrl = useRef("");
   const slot = imageSlots.find((item) => item.id === selected);
 
   useEffect(() => {
@@ -31,12 +32,9 @@ export function AdminPanel({ authenticated, adminReady, cmsReady }: { authentica
     return () => controller.abort();
   }, [signedIn, cmsReady]);
 
-  useEffect(() => {
-    if (!file) { setPreview(""); return; }
-    const url = URL.createObjectURL(file);
-    setPreview(url);
-    return () => URL.revokeObjectURL(url);
-  }, [file]);
+  useEffect(() => () => {
+    if (previewUrl.current) URL.revokeObjectURL(previewUrl.current);
+  }, []);
 
   useEffect(() => {
     if (selected) editor.current?.showModal();
@@ -65,8 +63,15 @@ export function AdminPanel({ authenticated, adminReady, cmsReady }: { authentica
     finally { setBusy(false); }
   }
 
+  function selectFile(nextFile: File | null) {
+    if (previewUrl.current) URL.revokeObjectURL(previewUrl.current);
+    previewUrl.current = nextFile ? URL.createObjectURL(nextFile) : "";
+    setPreview(previewUrl.current);
+    setFile(nextFile);
+  }
+
   function edit(id: string) {
-    setFile(null); setAlt(images[id]?.alt || ""); setError(""); setMessage(""); setRestoreConfirm(false); setSelected(id);
+    selectFile(null); setAlt(images[id]?.alt || ""); setError(""); setMessage(""); setRestoreConfirm(false); setSelected(id);
     if (fileInput.current) fileInput.current.value = "";
   }
 
@@ -89,7 +94,7 @@ export function AdminPanel({ authenticated, adminReady, cmsReady }: { authentica
         if (refreshed.ok) { setImages(await refreshed.json()); refreshedSuccessfully = true; }
       } catch { /* Publishing already succeeded; report a preview refresh failure separately. */ }
       window.dispatchEvent(new Event("images-updated"));
-      setSelected(null); setFile(null);
+      setSelected(null); selectFile(null);
       setMessage(!refreshedSuccessfully ? "Image saved. Reload this page to refresh the preview." : reset ? "Original image restored." : "Image published. It is now live on your website.");
     } catch (cause) { setError(cause instanceof Error ? cause.message : "Something went wrong. Please try again."); }
     finally { setBusy(false); }
@@ -132,10 +137,10 @@ export function AdminPanel({ authenticated, adminReady, cmsReady }: { authentica
               <img className={styles.preview} src={preview || images[slot.id]?.url || slot.src} alt={alt || slot.label} />
               <label className={styles.upload}>Choose a replacement<input ref={fileInput} type="file" accept="image/jpeg,image/png,image/webp,image/gif" disabled={busy} onChange={(event) => {
                 const candidate = event.target.files?.[0]; setError(""); setRestoreConfirm(false);
-                if (!candidate) { setFile(null); return; }
-                if (candidate.size > 4 * 1024 * 1024 || candidate.size === 0) { setError("Choose a non-empty image smaller than 4 MB."); setFile(null); event.target.value = ""; return; }
-                if (!["image/jpeg", "image/png", "image/webp", "image/gif"].includes(candidate.type)) { setError("Choose a JPG, PNG, WebP or GIF image."); setFile(null); event.target.value = ""; return; }
-                setFile(candidate);
+                if (!candidate) { selectFile(null); return; }
+                if (candidate.size > 4 * 1024 * 1024 || candidate.size === 0) { setError("Choose a non-empty image smaller than 4 MB."); selectFile(null); event.target.value = ""; return; }
+                if (!["image/jpeg", "image/png", "image/webp", "image/gif"].includes(candidate.type)) { setError("Choose a JPG, PNG, WebP or GIF image."); selectFile(null); event.target.value = ""; return; }
+                selectFile(candidate);
               }} /><span>JPG, PNG, WebP or GIF · up to 4 MB</span></label>
               <label className={styles.alt}>Image description<input value={alt} onChange={(event) => setAlt(event.target.value)} placeholder="For example, a couple at their wedding ceremony" required maxLength={300} disabled={busy} /><span>A short description for visitors using screen readers.</span></label>
               {error && <p role="alert" className={styles.error}>{error}</p>}

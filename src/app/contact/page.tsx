@@ -3,7 +3,8 @@ import { ContactSection } from "@/components/contact-section";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Tell us your story. Inquire about wedding, portrait and editorial photography with Prime Yantra Photography, available in Hansi, Hisar, Rohtak, Delhi, Gurgaon and Chandigarh.",
+    "Enquire about engagement, haldi, sangeet and wedding photography with Prime Yantra Photography in Hansi, Hisar, Rohtak, Delhi, Gurgaon and Chandigarh.",
+  alternates: { canonical: "/contact" },
 };
 export default function Contact() {
   return <ContactSection page />;

@@ -7,7 +7,8 @@ import { philosophy } from "@/lib/content";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Meet the photographer behind Prime Yantra Photography. A visual storyteller serving Hansi, Hisar, Rohtak, Delhi, Gurgaon and Chandigarh inspired by natural light, real emotions and beautiful imperfections.",
+    "Meet the wedding photographer behind Prime Yantra Photography, serving Hansi, Hisar, Rohtak, Delhi, Gurgaon and Chandigarh with candid, cinematic storytelling.",
+  alternates: { canonical: "/about" },
 };
 export default function About() {
   return (
@@ -15,7 +16,7 @@ export default function About() {
       <section className="about-hero page-width" aria-labelledby="about-title">
         <Photo
           slot="about.imgHeroImage" src={assets.about.imgHeroImage}
-          alt="Photographer capturing a deer in a misty valley at sunrise"
+          alt="Bride in a red veil photographed in dramatic directional light"
           className="about-hero-photo rounded-photo"
           sizes="100vw"
           priority
@@ -48,15 +49,15 @@ export default function About() {
               way of seeing the world differently.
             </p>
             <p>
-              Serving Hansi, Hisar, Rohtak, Delhi, Gurgaon and Chandigarh, I photograph weddings,
-              portraits, and editorial stories with a cinematic yet honest
-              approach. My work is inspired by natural light, real emotions,
-              beautiful imperfections, and the people behind every story.
+              Serving Hansi, Hisar, Rohtak, Delhi, Gurgaon and Chandigarh, I photograph engagements,
+              haldi, sangeet and wedding celebrations with a cinematic yet
+              honest approach. My work is inspired by natural light, real
+              emotions and the people behind every story.
             </p>
           </div>
           <Photo
             slot="about.imgFrame" src={assets.about.imgFrame}
-            alt="A man walking through an elegant sunlit Parisian courtyard"
+            alt="Couple looking at each other during a black-and-white portrait session"
             className="story-photo rounded-photo"
           />
         </div>

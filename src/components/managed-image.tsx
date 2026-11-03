@@ -32,5 +32,5 @@ export function ImagesProvider({ initialImages, children }: { initialImages: Ima
 export function ManagedImage({ slot, src, alt, ...props }: ImageProps & { slot?: string }) {
   const images = useContext(ImagesContext);
   const replacement = slot ? images[slot] : undefined;
-  return <Image {...props} src={replacement?.url || src} alt={replacement?.alt || alt} unoptimized />;
+  return <Image {...props} src={replacement?.url || src} alt={replacement?.alt || alt} />;
 }

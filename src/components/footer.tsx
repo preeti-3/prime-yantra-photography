@@ -38,14 +38,14 @@ export function Footer() {
               />
             </Link>
             <p>
-              Fine art editorial photography preserving your life&apos;s most
-              precious romantic memoirs. Serving Hansi, Hisar, Rohtak, Delhi, Gurgaon and Chandigarh.
+              Candid engagement, haldi, sangeet and wedding photography preserving
+              every ritual and emotion. Serving Hansi, Hisar, Rohtak, Delhi, Gurgaon and Chandigarh.
             </p>
           </div>
           <div className="flex items-start justify-between gap-8 md:gap-20">
             {groups.map((group) => (
               <nav className="flex flex-col items-start" aria-label={group.title} key={group.title}>
-                <h2 className="mb-3 !font-sans !text-[11px] !font-semibold !leading-normal tracking-[2px] !text-gold uppercase">{group.title}</h2>
+                <h2 className="mb-3 !font-sans !text-[12px] !font-semibold !leading-normal tracking-[.3px] !text-[var(--orange-light)]">{group.title}</h2>
                 {group.links.map((link) => (
                   <Link className="flex min-h-11 items-center text-[13px] leading-normal md:min-h-0 md:py-[5px]" key={link.label} href={link.href}>
                     {link.label}

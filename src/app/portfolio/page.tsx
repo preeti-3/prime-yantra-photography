@@ -6,9 +6,10 @@ import { assets } from "@/lib/assets";
 import { introduction } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
+  title: "Indian Wedding Photography Portfolio",
   description:
-    "Explore Prime Yantra Photography’s wedding, portrait and editorial photography. Stories, framed with intention.",
+    "Explore engagement, haldi, sangeet and wedding photography by Prime Yantra Photography in Hansi, Hisar, Rohtak, Delhi, Gurgaon and Chandigarh.",
+  alternates: { canonical: "/portfolio" },
 };
 export default function Portfolio() {
   return (
@@ -19,12 +20,12 @@ export default function Portfolio() {
       >
         <div>
           <p className="eyebrow">Portfolio</p>
-          <h1 id="portfolio-title">Stories, Framed With Intention.</h1>
+          <h1 id="portfolio-title">Every Celebration, Framed With Heart.</h1>
         </div>
         <p>{introduction}</p>
         <Photo
           slot="portfolio.imgHeroImage" src={assets.portfolio.imgHeroImage}
-          alt="Photographer tossing a camera into the air in an autumn forest"
+          alt="Bride photographed in cinematic light on her wedding day"
           className="portfolio-hero-photo rounded-photo"
           sizes="100vw"
           priority

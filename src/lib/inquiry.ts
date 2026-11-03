@@ -1,7 +1,7 @@
 import { send } from "@emailjs/browser";
 export type Inquiry = { name: string; email: string; inquiryType: string; details: string };
 export type InquiryErrors = Partial<Record<keyof Inquiry, string>>;
-export const inquiryTypes = ["Editorial Wedding / Elopement", "Cinematic Portraits", "Commercial & Editorial", "Events", "Other"] as const;
+export const inquiryTypes = ["Engagement", "Haldi", "Sangeet", "Wedding", "Complete Wedding Celebration", "Other"] as const;
 
 export function validateInquiry(inquiry: Inquiry): InquiryErrors {
   const errors: InquiryErrors = {};

@@ -1,61 +1,101 @@
 import { assets } from "./assets";
 
-export const introduction = "Candid moments elevated through an editorial, cinematic lens. Specializing in high-end luxury weddings, lifestyle storytelling, and timeless romantic documentation.";
+export const introduction =
+  "From the first ring to the final wedding ritual, we preserve every celebration with candid emotion, vibrant colour and a timeless cinematic style.";
 
 export const services = [
-  { title: "Editorial Weddings", image: assets.home.imgRectangle6, slot: "home.imgRectangle6", alt: "A sunlit garden wedding reception in a Parisian courtyard", description: "Complete elite wedding weekend coverage. Includes multi-day events, pre-wedding engagement portraits, rehearsal dinners, and custom heirloom legacy albums.", price: "Contact for Pricing" },
-  { title: "Cinematic Portraits", image: assets.home.imgRectangle7, slot: "home.imgRectangle7", alt: "Cinematic portrait of a woman in the warm glow of sunset", description: "Artfully directed individual, couple, or editorial sessions in Hansi, Hisar, Rohtak, Delhi, Gurgaon and Chandigarh. Focused on capturing elevated, magazine-caliber authentic character.", price: "Contact for Pricing" },
-  { title: "Commercial & Editorial", image: assets.home.imgRectangle8, slot: "home.imgRectangle8", alt: "Delicate embroidered wedding gowns hanging in soft window light", description: "High-end campaign, lookbook, and lifestyle branding documentation for luxury travel, fashion, and organic wellness brands across Hansi, Hisar, Rohtak, Delhi, Gurgaon and Chandigarh.", price: "Inquire for Bespoke Quote" },
+  {
+    title: "Engagement",
+    image: assets.home.imgRectangle6,
+    slot: "home.imgRectangle6",
+    alt: "Engaged couple celebrating together in formal wedding attire",
+    description:
+      "Relaxed engagement and pre-wedding portraits, guided just enough to keep every frame natural and personal.",
+  },
+  {
+    title: "Haldi",
+    image: assets.home.imgRectangle7,
+    slot: "home.imgRectangle7",
+    alt: "Bride smiling during a joyful pre-wedding celebration",
+    description:
+      "Candid coverage of the colour, laughter and family traditions that make your haldi feel alive.",
+  },
+  {
+    title: "Sangeet",
+    image: assets.home.imgRectangle8,
+    slot: "home.imgRectangle8",
+    alt: "Close portrait of a woman wearing a green sequined gown and statement necklace",
+    description:
+      "Expressive photographs of performances, dance, details and the people who bring your sangeet to life.",
+  },
+  {
+    title: "Wedding",
+    image: assets.home.imgRectangle9,
+    slot: "home.imgRectangle9",
+    alt: "Couple in formal attire posing together on a staircase",
+    description:
+      "Wedding-day storytelling that brings together intimate rituals, composed portraits and unguarded emotion.",
+  },
 ];
 
-export type Category = "All" | "Wedding" | "Portraits" | "Editorial" | "Events";
-export type Gallery = { id: string; category: Exclude<Category, "All">; title: string; image: string; slot: string; alt: string };
+export const categories = ["All", "Engagement", "Haldi", "Sangeet", "Wedding"] as const;
+export type Category = (typeof categories)[number];
+export type Gallery = {
+  id: string;
+  category: Exclude<Category, "All">;
+  title: string;
+  image: string;
+  slot: string;
+  alt: string;
+};
+
 const p = assets.portfolio;
 export const galleries: Record<string, Gallery> = {
-  tuscan: { id: "tuscan", category: "Wedding", title: "Tuscan Villa Wedding", image: p.imgRectangle, slot: "portfolio.imgRectangle", alt: "A lush mountain valley beneath a dramatic golden sky" },
-  florence: { id: "florence", category: "Portraits", title: "Florence Portrait Session", image: p.imgRectangle1, slot: "portfolio.imgRectangle1", alt: "Bride in an ivory gown beside a window overlooking Florence" },
-  amalfiFeatured: { id: "amalfi-featured", category: "Editorial", title: "Amalfi Coast Editorial", image: p.imgRectangle2, slot: "portfolio.imgRectangle2", alt: "An elegant groom in a black tuxedo" },
-  chateau: { id: "chateau", category: "Wedding", title: "Chateau de Villette Wedding", image: p.imgRectangle3, slot: "portfolio.imgRectangle3", alt: "Pastel sunset reflected in gentle waves along the shore" },
-  parisWedding: { id: "paris-wedding", category: "Wedding", title: "Parisian Wedding Weekend", image: p.imgRectangle4, slot: "portfolio.imgRectangle4", alt: "Wedding tables and white flowers in an elegant European garden" },
-  amalfiWedding: { id: "amalfi-wedding", category: "Wedding", title: "Amalfi Coast Wedding", image: p.imgRectangle5, slot: "portfolio.imgRectangle5", alt: "A woman lit by the golden light of an Amalfi sunset" },
-  parisPortrait: { id: "paris-portrait", category: "Portraits", title: "Parisian Portrait Session", image: p.imgRectangle6, slot: "portfolio.imgRectangle6", alt: "A woman holding a vintage camera beside a tall Parisian window" },
-  couple: { id: "couple", category: "Portraits", title: "Couple Portrait, Florence", image: p.imgRectangle7, slot: "portfolio.imgRectangle7", alt: "Hands arranging photographs and keepsakes on a sunlit desk" },
-  provencePortrait: { id: "provence-portrait", category: "Portraits", title: "Editorial Portrait, Provence", image: p.imgRectangle8, slot: "portfolio.imgRectangle8", alt: "Embroidered ivory gowns hanging beside a window" },
-  provence: { id: "provence", category: "Editorial", title: "Provence Editorial", image: p.imgEditorialCouture, slot: "portfolio.imgEditorialCouture", alt: "Detailed ivory couture gown in a softly lit studio" },
-  parisFashion: { id: "paris-fashion", category: "Editorial", title: "Parisian Fashion Story", image: p.imgEditorialGreenGown, slot: "portfolio.imgEditorialGreenGown", alt: "Fashion portrait of a woman in an emerald green gown" },
-  amalfiEditorial: { id: "amalfi-editorial", category: "Editorial", title: "Amalfi Coast Editorial", image: p.imgEditorialRedBride, slot: "portfolio.imgEditorialRedBride", alt: "Editorial bridal portrait in rich red couture" },
-  fullWeddingBride: { id: "full-wedding-bride", category: "Wedding", title: "Manor House Bridal Portrait", image: p.imgFullWeddingBride, slot: "portfolio.imgFullWeddingBride", alt: "Smiling bride holding white flowers beside a manor window" },
-  fullWeddingCeremony: { id: "full-wedding-ceremony", category: "Wedding", title: "Tuscan Garden Ceremony", image: p.imgFullWeddingCeremony, slot: "portfolio.imgFullWeddingCeremony", alt: "White floral wedding arch in a sunlit Italian garden" },
-  fullWeddingHaldi: { id: "full-wedding-haldi", category: "Wedding", title: "Haldi Celebration", image: p.imgFullWeddingHaldi, slot: "portfolio.imgFullWeddingHaldi", alt: "Joyful couple surrounded by family during a colorful haldi ceremony" },
-  fullPortraitBride: { id: "full-portrait-bride", category: "Portraits", title: "Bridal Portrait by Candlelight", image: p.imgFullPortraitBride, slot: "portfolio.imgFullPortraitBride", alt: "Bride in red standing beside a glowing chandelier" },
-  fullPortraitGown: { id: "full-portrait-gown", category: "Portraits", title: "Quiet Bridal Study", image: p.imgFullPortraitGown, slot: "portfolio.imgFullPortraitGown", alt: "Intimate bridal portrait in soft natural light" },
-  fullPortraitTuxedo: { id: "full-portrait-tuxedo", category: "Portraits", title: "Evening Portrait", image: p.imgFullPortraitTuxedo, slot: "portfolio.imgFullPortraitTuxedo", alt: "Formal portrait of a man in a tuxedo" },
-  fullEditorialDetails: { id: "full-editorial-details", category: "Editorial", title: "Heirloom Details", image: p.imgFullEditorialDetails, slot: "portfolio.imgFullEditorialDetails", alt: "Hands arranging an heirloom journal in warm window light" },
-  fullEditorialMonument: { id: "full-editorial-monument", category: "Editorial", title: "Architectural Study", image: p.imgFullEditorialMonument, slot: "portfolio.imgFullEditorialMonument", alt: "Editorial architectural portrait framed against the sky" },
-  fullEditorialLight: { id: "full-editorial-light", category: "Editorial", title: "Light and Form", image: p.imgFullEditorialLight, slot: "portfolio.imgFullEditorialLight", alt: "Editorial silhouette posed against dramatic light" },
+  engagementStory: { id: "engagement-story", category: "Engagement", title: "A Promise Begins", image: p.imgRectangle, slot: "portfolio.imgRectangle", alt: "Couple photographed together during their engagement story" },
+  engagementPortrait: { id: "engagement-portrait", category: "Engagement", title: "Together, Naturally", image: p.imgRectangle1, slot: "portfolio.imgRectangle1", alt: "Romantic engagement portrait in soft natural light" },
+  engagementEvening: { id: "engagement-evening", category: "Engagement", title: "The Ring and the Romance", image: p.imgRectangle2, slot: "portfolio.imgRectangle2", alt: "Elegant couple portrait celebrating an engagement" },
+  haldiJoy: { id: "haldi-joy", category: "Haldi", title: "Sunshine and Smiles", image: p.imgRectangle3, slot: "portfolio.imgRectangle3", alt: "Joyful family moments during a colourful haldi ceremony" },
+  haldiRituals: { id: "haldi-rituals", category: "Haldi", title: "A Celebration in Yellow", image: p.imgRectangle4, slot: "portfolio.imgRectangle4", alt: "Close portrait of a bride wearing traditional jewellery" },
+  haldiCandid: { id: "haldi-candid", category: "Haldi", title: "Colour, Laughter, Love", image: p.imgRectangle5, slot: "portfolio.imgRectangle5", alt: "Bride in red attire looking beyond the camera" },
+  sangeetStage: { id: "sangeet-stage", category: "Sangeet", title: "Lights, Music, Memories", image: p.imgRectangle6, slot: "portfolio.imgRectangle6", alt: "Evening sangeet celebration with music and festive lights" },
+  sangeetDance: { id: "sangeet-dance", category: "Sangeet", title: "Dancing Together", image: p.imgRectangle7, slot: "portfolio.imgRectangle7", alt: "Warm points of light scattered across a dark background" },
+  sangeetDetails: { id: "sangeet-details", category: "Sangeet", title: "The Festive Details", image: p.imgRectangle8, slot: "portfolio.imgRectangle8", alt: "Close portrait of a woman in a green sequined gown" },
+  weddingBride: { id: "wedding-bride", category: "Wedding", title: "The Bridal Story", image: p.imgEditorialCouture, slot: "portfolio.imgEditorialCouture", alt: "Couple sharing a quiet embrace beside a window" },
+  weddingPortrait: { id: "wedding-portrait", category: "Wedding", title: "Made for Each Other", image: p.imgEditorialGreenGown, slot: "portfolio.imgEditorialGreenGown", alt: "Timeless wedding portrait with cinematic light" },
+  weddingVows: { id: "wedding-vows", category: "Wedding", title: "Sacred Promises", image: p.imgEditorialRedBride, slot: "portfolio.imgEditorialRedBride", alt: "Bride framed in a doorway during a dramatic portrait" },
+  fullEngagementOne: { id: "full-engagement-one", category: "Engagement", title: "New Beginnings", image: p.imgFullWeddingBride, slot: "portfolio.imgFullWeddingBride", alt: "Engagement portrait capturing a joyful new beginning" },
+  fullEngagementTwo: { id: "full-engagement-two", category: "Engagement", title: "Just the Two of Us", image: p.imgFullWeddingCeremony, slot: "portfolio.imgFullWeddingCeremony", alt: "Couple together during a romantic pre-wedding session" },
+  fullHaldiOne: { id: "full-haldi-one", category: "Haldi", title: "Haldi Happiness", image: p.imgFullWeddingHaldi, slot: "portfolio.imgFullWeddingHaldi", alt: "Joyful couple surrounded by loved ones during haldi" },
+  fullHaldiTwo: { id: "full-haldi-two", category: "Haldi", title: "Family Traditions", image: p.imgFullPortraitBride, slot: "portfolio.imgFullPortraitBride", alt: "Detail portrait of a woman in a green gown and silver necklace" },
+  fullSangeetOne: { id: "full-sangeet-one", category: "Sangeet", title: "An Evening to Remember", image: p.imgFullPortraitGown, slot: "portfolio.imgFullPortraitGown", alt: "Bride ready for a glamorous sangeet evening" },
+  fullSangeetTwo: { id: "full-sangeet-two", category: "Sangeet", title: "Celebration in Motion", image: p.imgFullPortraitTuxedo, slot: "portfolio.imgFullPortraitTuxedo", alt: "Formal portrait from an energetic sangeet celebration" },
+  fullWeddingOne: { id: "full-wedding-one", category: "Wedding", title: "The Little Details", image: p.imgFullEditorialDetails, slot: "portfolio.imgFullEditorialDetails", alt: "Carefully arranged heirloom details from a wedding day" },
+  fullWeddingTwo: { id: "full-wedding-two", category: "Wedding", title: "A Timeless Bride", image: p.imgFullEditorialMonument, slot: "portfolio.imgFullEditorialMonument", alt: "Indian bride in red photographed in an architectural setting" },
+  fullWeddingThree: { id: "full-wedding-three", category: "Wedding", title: "Forever Starts Here", image: p.imgFullEditorialLight, slot: "portfolio.imgFullEditorialLight", alt: "Newly married couple photographed in dramatic light" },
 };
 
 export const gallerySections = [
-  { id: "featured", eyebrow: "Featured Gallery", title: "Standout Stories", featured: true, items: [galleries.tuscan, galleries.florence, galleries.amalfiFeatured] },
-  { id: "weddings", eyebrow: "Wedding", title: "Timeless Wedding Stories", items: [galleries.chateau, galleries.parisWedding, galleries.amalfiWedding] },
-  { id: "portraits", eyebrow: "Portraits", title: "Intimate Portraits", items: [galleries.parisPortrait, galleries.couple, galleries.provencePortrait] },
-  { id: "editorial", eyebrow: "Editorial", title: "Editorial & Fashion", items: [galleries.provence, galleries.parisFashion, galleries.amalfiEditorial] },
+  { id: "featured", eyebrow: "Featured Celebrations", title: "The Wedding Journey", featured: true, items: [galleries.engagementStory, galleries.haldiJoy, galleries.weddingVows] },
+  { id: "engagement", eyebrow: "Engagement", title: "Where Your Story Begins", items: [galleries.engagementStory, galleries.engagementPortrait, galleries.engagementEvening] },
+  { id: "haldi", eyebrow: "Haldi", title: "Colour, Tradition and Joy", items: [galleries.haldiJoy, galleries.haldiRituals, galleries.haldiCandid] },
+  { id: "sangeet", eyebrow: "Sangeet", title: "An Evening Full of Energy", items: [galleries.sangeetStage, galleries.sangeetDance, galleries.sangeetDetails] },
+  { id: "wedding", eyebrow: "Wedding", title: "The Day You Say Forever", items: [galleries.weddingBride, galleries.weddingPortrait, galleries.weddingVows] },
 ];
 
 export const fullGallery = [
-  galleries.fullWeddingBride,
-  galleries.fullPortraitBride,
-  galleries.fullEditorialDetails,
-  galleries.fullWeddingCeremony,
-  galleries.fullPortraitGown,
-  galleries.fullEditorialMonument,
-  galleries.fullWeddingHaldi,
-  galleries.fullPortraitTuxedo,
-  galleries.fullEditorialLight,
+  galleries.fullEngagementOne,
+  galleries.fullHaldiOne,
+  galleries.fullWeddingOne,
+  galleries.fullSangeetOne,
+  galleries.fullEngagementTwo,
+  galleries.fullWeddingTwo,
+  galleries.fullHaldiTwo,
+  galleries.fullSangeetTwo,
+  galleries.fullWeddingThree,
 ];
 
 export const philosophy = [
-  { title: "01 - Observe", description: "I look beyond the obvious to find the small moments that make a story personal." },
-  { title: "02 - Feel", description: "Emotion is at the heart of every photograph. I want images to feel as real as the moment itself." },
-  { title: "03 - Create", description: "Through light, composition, and perspective, I turn fleeting moments into timeless visual stories." },
+  { title: "01 - Observe", description: "We notice the glances, laughter and family moments that make every wedding celebration personal." },
+  { title: "02 - Feel", description: "Real emotion leads every frame, so your photographs bring back how each ritual and celebration felt." },
+  { title: "03 - Create", description: "Through light, colour and composition, we turn fleeting wedding moments into lasting visual stories." },
 ];

@@ -18,7 +18,7 @@ export function ServiceCard({
         <div>
           <h3>{service.title}</h3>
           <p>{service.description}</p>
-          <Link className="text-link" href="/contact" aria-label={`Enquire about ${service.title}`}>Let&apos;s plan your shoot <span aria-hidden="true">↗</span></Link>
+          <Link className="text-link" href="/contact" aria-label={`Enquire about ${service.title} photography`}>Plan this celebration <span aria-hidden="true">↗</span></Link>
         </div>
       </div>
     </article>

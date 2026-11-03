@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Photo, SectionHeading } from "./ui";
 import {
+  categories,
   fullGallery,
   gallerySections,
   type Category,
@@ -10,13 +11,17 @@ import {
 
 function GalleryCard({ gallery }: { gallery: Gallery }) {
   return (
-    <article className="gallery-card" data-category={gallery.category}>
+    <figure className="gallery-card" data-category={gallery.category}>
       <Photo
         slot={gallery.slot} src={gallery.image}
         alt={gallery.alt}
         sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 60vw"
       />
-    </article>
+      <figcaption className="gallery-caption">
+        <span>{gallery.category}</span>
+        <strong>{gallery.title}</strong>
+      </figcaption>
+    </figure>
   );
 }
 
@@ -27,6 +32,19 @@ export function PortfolioGallery() {
   );
   return (
     <div className="page-width portfolio-content">
+      <div className="gallery-filters" role="group" aria-label="Filter wedding photography by celebration">
+        {categories.map((item) => (
+          <button
+            key={item}
+            type="button"
+            className="gallery-filter"
+            aria-pressed={category === item}
+            onClick={() => setCategory(item)}
+          >
+            {item}
+          </button>
+        ))}
+      </div>
       <p className="sr-only" role="status">
         {category === "All"
           ? "Showing all photography categories."
@@ -69,8 +87,8 @@ export function PortfolioGallery() {
             </div>
           ) : (
             <div className="gallery-empty">
-              <h3>No event galleries yet.</h3>
-              <p>Explore the wedding, portrait and editorial collections.</p>
+              <h3>No photographs in this celebration yet.</h3>
+              <p>Explore all engagement, haldi, sangeet and wedding stories.</p>
               <button
                 className="text-link"
                 type="button"
