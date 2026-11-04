@@ -39,20 +39,12 @@ for (const width of [1440, 1280, 1024, 768, 375]) {
   }
 }
 
-test("portfolio filters every displayed card and handles an empty Events category", async ({ page }) => {
+test("portfolio shows one uncategorized gallery with the complete image set", async ({ page }) => {
   await page.goto("/portfolio");
   await expect(page.locator(".gallery-card")).toHaveCount(21);
-  for (const category of ["Wedding", "Portraits", "Editorial"]) {
-    await page.getByRole("button", { name: category, exact: true }).click();
-    await expect(page.locator(".gallery-card")).toHaveCount(7);
-    expect(await page.locator(".gallery-card").evaluateAll(cards => cards.map(card => card.getAttribute("data-category")))).toEqual(Array(7).fill(category));
-    await expect(page.getByRole("button", { name: category, exact: true })).toHaveAttribute("aria-pressed", "true");
-  }
-  await page.getByRole("button", { name: "Events", exact: true }).click();
-  await expect(page.locator(".gallery-card")).toHaveCount(0);
-  await expect(page.getByText("No event galleries yet.")).toBeVisible();
-  await page.getByRole("button", { name: "View all photography" }).click();
-  await expect(page.locator(".gallery-card")).toHaveCount(21);
+  await expect(page.locator(".gallery-filter")).toHaveCount(0);
+  await expect(page.locator(".gallery-caption")).toHaveCount(0);
+  expect(new Set(await page.locator(".gallery-card img").evaluateAll(images => images.map(image => image.getAttribute("src"))))).toHaveProperty("size", 21);
 });
 
 test("selected cards expand within the row to match the featured design", async ({ page }) => {

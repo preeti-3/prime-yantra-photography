@@ -18,6 +18,7 @@ test("admin can sign in, preview, replace one image, restore it and sign out", a
   await card.getByRole("button", { name: "Replace image" }).click();
   const dialog = page.getByRole("dialog");
   await expect(dialog).toBeVisible();
+  await expect(dialog.getByLabel("Image description")).toHaveValue("Bride in a red veil photographed in dramatic directional light");
   await dialog.locator('input[type="file"]').setInputFiles({ name: "portrait.png", mimeType: "image/png", buffer: Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/l9sAAAAASUVORK5CYII=", "base64") });
   await expect(dialog.locator("img")).toHaveAttribute("src", /^blob:/);
   await dialog.getByLabel("Image description").fill("Integration test wedding portrait");
@@ -31,6 +32,7 @@ test("admin can sign in, preview, replace one image, restore it and sign out", a
   await expect(page.locator(".home-hero-photo img")).toHaveAttribute("src", /cdn\.sanity\.io/);
   await page.goto("/admin");
   await card.getByRole("button", { name: "Replace image" }).click();
+  await expect(dialog.getByLabel("Image description")).toHaveValue("Integration test wedding portrait");
   await dialog.getByRole("button", { name: "Restore original image", exact: true }).click();
   await dialog.getByRole("button", { name: "Yes, restore original" }).click();
   await expect(page.getByRole("status")).toContainText("Original image restored");

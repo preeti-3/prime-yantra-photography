@@ -11,30 +11,30 @@ const selectedStories = [
   {
     src: assets.home.imgRectangle3,
     slot: "home.imgRectangle3",
-    alt: "Couple laughing with family as flower petals fall during their haldi ceremony",
-    category: "Haldi",
-    title: "Joy in every frame",
+    alt: "Bride standing close to the groom in formal wedding attire",
+    category: "Wedding portrait",
+    title: "Close, naturally",
   },
   {
     src: assets.home.imgRectangle1,
     slot: "home.imgRectangle1",
-    alt: "Bride standing in a shaft of warm window light",
-    category: "Intimate portraits",
-    title: "In her own light",
+    alt: "Bride and groom embracing beneath wedding lights",
+    category: "Together",
+    title: "A quiet embrace",
   },
   {
     src: assets.home.imgRectangle,
     slot: "home.imgRectangle",
-    alt: "Engaged couple sharing a quiet embrace indoors",
-    category: "Engagement",
-    title: "Together, naturally",
+    alt: "Bride seated in red wedding attire before dark curtains",
+    category: "Bridal portrait",
+    title: "In her own light",
   },
   {
     src: assets.home.imgRectangle2,
     slot: "home.imgRectangle2",
-    alt: "Couple posing together on a stage during an evening celebration",
-    category: "Sangeet",
-    title: "A night in motion",
+    alt: "Bride in profile adjusting her red wedding veil",
+    category: "Wedding details",
+    title: "The finishing touch",
   },
 ];
 
@@ -53,7 +53,7 @@ export default function Home() {
         <Photo
           slot="home.imgFrame"
           src={assets.home.imgFrame}
-          alt="Bride in a red veil photographed in dramatic directional light"
+          alt="Bride leaning on the groom beneath wedding lights"
           className="home-hero-photo"
           priority
           sizes="100vw"
@@ -116,7 +116,7 @@ export default function Home() {
             <Photo
               slot="home.imgRectangle4"
               src={assets.home.imgRectangle4}
-              alt="Couple looking at each other during a black-and-white portrait session"
+              alt="Black-and-white portrait of the groom beneath a geometric ceiling"
               className="studio-photo"
               sizes="(max-width: 767px) 100vw, 48vw"
             />

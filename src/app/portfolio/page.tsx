@@ -25,7 +25,7 @@ export default function Portfolio() {
         <p>{introduction}</p>
         <Photo
           slot="portfolio.imgHeroImage" src={assets.portfolio.imgHeroImage}
-          alt="Bride photographed in cinematic light on her wedding day"
+          alt="Bride and groom standing together beneath colourful wedding lights"
           className="portfolio-hero-photo rounded-photo"
           sizes="100vw"
           priority

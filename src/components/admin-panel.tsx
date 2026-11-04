@@ -71,7 +71,8 @@ export function AdminPanel({ authenticated, adminReady, cmsReady }: { authentica
   }
 
   function edit(id: string) {
-    selectFile(null); setAlt(images[id]?.alt || ""); setError(""); setMessage(""); setRestoreConfirm(false); setSelected(id);
+    const nextSlot = imageSlots.find((item) => item.id === id);
+    selectFile(null); setAlt(images[id]?.alt || nextSlot?.description || ""); setError(""); setMessage(""); setRestoreConfirm(false); setSelected(id);
     if (fileInput.current) fileInput.current.value = "";
   }
 
@@ -142,7 +143,7 @@ export function AdminPanel({ authenticated, adminReady, cmsReady }: { authentica
                 if (!["image/jpeg", "image/png", "image/webp", "image/gif"].includes(candidate.type)) { setError("Choose a JPG, PNG, WebP or GIF image."); selectFile(null); event.target.value = ""; return; }
                 selectFile(candidate);
               }} /><span>JPG, PNG, WebP or GIF · up to 4 MB</span></label>
-              <label className={styles.alt}>Image description<input value={alt} onChange={(event) => setAlt(event.target.value)} placeholder="For example, a couple at their wedding ceremony" required maxLength={300} disabled={busy} /><span>A short description for visitors using screen readers.</span></label>
+              <label className={styles.alt}>Image description<input value={alt} onChange={(event) => setAlt(event.target.value)} placeholder="Describe what is visible in the image" required maxLength={300} disabled={busy} /><span>The current description is shown above. Leave it unchanged to keep it.</span></label>
               {error && <p role="alert" className={styles.error}>{error}</p>}
               <div className={styles.actions}><button className="button button-dark" disabled={busy || !file || !alt.trim()}>{busy ? "Saving…" : "Publish replacement"}</button><button type="button" className={styles.secondary} disabled={busy} onClick={() => setSelected(null)}>Cancel</button></div>
               {images[slot.id] && <div className={styles.restore}>{restoreConfirm ? <><p>Restore the original photo at this position?</p><button type="button" disabled={busy} onClick={() => publish(true)}>Yes, restore original</button><button type="button" disabled={busy} onClick={() => setRestoreConfirm(false)}>Keep current photo</button></> : <button type="button" disabled={busy} onClick={() => setRestoreConfirm(true)}>Restore original image</button>}</div>}

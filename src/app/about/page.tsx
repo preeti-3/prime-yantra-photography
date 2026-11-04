@@ -16,7 +16,7 @@ export default function About() {
       <section className="about-hero page-width" aria-labelledby="about-title">
         <Photo
           slot="about.imgHeroImage" src={assets.about.imgHeroImage}
-          alt="Bride in a red veil photographed in dramatic directional light"
+          alt="Bride seated in red wedding attire before dark curtains"
           className="about-hero-photo rounded-photo"
           sizes="100vw"
           priority
@@ -57,7 +57,7 @@ export default function About() {
           </div>
           <Photo
             slot="about.imgFrame" src={assets.about.imgFrame}
-            alt="Couple looking at each other during a black-and-white portrait session"
+            alt="Bride resting against the groom during their wedding celebration"
             className="story-photo rounded-photo"
           />
         </div>
